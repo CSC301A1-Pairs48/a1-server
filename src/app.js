@@ -11,17 +11,22 @@ app.get('/', (req, res) => {
     res.send('Test');
 });
 
-app.get('/punks', (req, res) => {
+app.get('/api/punks', (req, res) => {
     const protocol = req.protocol;
     const host = req.hostname;
     const url = req.originalUrl;
-    const port = PORT;
-    // DB.forEach((obj) =>{
-    //     if (!obj["img"].startsWith(`${protocol}://${host}:${port}`)){
-    //         obj["img"] = `${protocol}://${host}:${port}` + obj["img"]
-    //     }
-    //     console.log(obj["img"]);
-    // })
+    // const port = PORT; for local host
+    
+
+
+    DB.forEach((obj) =>{
+        if (!obj["img"].startsWith(`${protocol}://${host}`)){
+            obj["img"] = `${protocol}://${host}` + obj["img"]
+        }
+        // console.log(obj["img"]);
+    })
+
+
 
     // for (let obj in DB){
     //     console.log(obj);
@@ -30,13 +35,13 @@ app.get('/punks', (req, res) => {
     // }    
 
 
-    const fullUrl = `${protocol}://${host}:${port}${url}`
+    // const fullUrl = `${protocol}://${host}:${port}${url}`
     // console.log(fullUrl);
     // console.log(req.path);
     res.send(JSON.stringify(DB))
 })
 
-app.get('/punks/:id', (req, res) => {
+app.get('/api/punks/:id', (req, res) => {
     const key = "CryptoPunk #" + req.params.id;
     const punk = DB.find((item) => item.title == key);
     if (punk){
