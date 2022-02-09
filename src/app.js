@@ -5,7 +5,7 @@ import path from 'path';
 const app = express();
 const __dirname = path.resolve();
 app.use(express.static(__dirname + '/public'));
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
     res.send('Test');
@@ -46,4 +46,4 @@ app.get('/punks/:id', (req, res) => {
     }
 
 })
-app.listen(PORT, () => console.log('Yes'));
+app.listen(PORT, "0.0.0.0", () => console.log('Yes'));
