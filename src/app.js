@@ -16,12 +16,12 @@ app.get('/punks', (req, res) => {
     const host = req.hostname;
     const url = req.originalUrl;
     const port = PORT;
-    DB.forEach((obj) =>{
-        if (!obj["img"].startsWith(`${protocol}://${host}:${port}`)){
-            obj["img"] = `${protocol}://${host}:${port}` + obj["img"]
-        }
-        console.log(obj["img"]);
-    })
+    // DB.forEach((obj) =>{
+    //     if (!obj["img"].startsWith(`${protocol}://${host}:${port}`)){
+    //         obj["img"] = `${protocol}://${host}:${port}` + obj["img"]
+    //     }
+    //     console.log(obj["img"]);
+    // })
 
     // for (let obj in DB){
     //     console.log(obj);
