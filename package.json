@@ -1,0 +1,21 @@
+{
+  "name": "a1-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node" : "16.x"
+  }
+}
