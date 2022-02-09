@@ -2,7 +2,7 @@ const DB = [
     {
         title: "CryptoPunk #2890",
         price: "Ξ 605", 
-        img: "https://lh3.googleusercontent.com/k78mU3QBfrdNQWeUnNyA58QqvauTyuP_EhBScyBn57mWeejziJYn9QYG1NSyZ_75lb-auW0EwagEtQ2irbrcSP48=s0",
+        img: "https://www.larvalabs.com/cryptopunks/cryptopunk2890.png",
         metadata: {
             id: "2890",
             type: "Human",
