@@ -51,4 +51,5 @@ app.get('/api/punks/:id', (req, res) => {
     }
 
 })
-app.listen(PORT, "0.0.0.0", () => console.log('Yes'));
+let server = app.listen(PORT, "0.0.0.0", () => console.log('Yes'));
+module.exports = server
