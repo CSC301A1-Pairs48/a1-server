@@ -1,7 +1,4 @@
 import express from 'express';
-// const express = require('express');
-// const DB = require("./db.js");
-// const path = require('path');
 import DB from './db.js';
 import path from 'path';
 
@@ -11,36 +8,26 @@ app.use(express.static(__dirname + '/public'));
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-    res.send('Test');
+    res.send('Main, nothing to see here');
 });
 
 app.get('/api/punks', (req, res) => {
     const protocol = req.protocol;
     const host = req.hostname;
-    const url = req.originalUrl;
-    // const port = PORT; for local host
-    
-
-
-    DB.forEach((obj) =>{
-        if (!obj["img"].startsWith(`${protocol}://${host}`)){
-            obj["img"] = `${protocol}://${host}` + obj["img"]
-        }
-        // console.log(obj["img"]);
-    })
-
-
-
-    // for (let obj in DB){
-    //     console.log(obj);
-    //     // obj["img"] = `${protocol}://${host}:${port}` + obj["img"]
-    //     console.log(obj["img"]);
-    // }    
-
-
-    // const fullUrl = `${protocol}://${host}:${port}${url}`
-    // console.log(fullUrl);
-    // console.log(req.path);
+    if (process.env.NODE_ENV === "production") { 
+        DB.forEach((obj) => {
+            if (!obj["img"].startsWith(`${protocol}://${host}`)){
+                obj["img"] = `${protocol}://${host}` + obj["img"]
+            }
+        });
+    } else if  (process.env.NODE_ENV === "development") {
+        const port = PORT;
+        DB.forEach((obj) => {
+            if (!obj["img"].startsWith(`${protocol}://${host}:${port}`)){
+                obj["img"] = `${protocol}://${host}:${port}` + obj["img"]
+            }
+        });
+    } 
     res.send(JSON.stringify(DB))
 })
 
